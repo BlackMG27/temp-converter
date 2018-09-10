@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Temp Converter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+    <style>
+          body {
+            margin-top: 4.5rem;
+            background-color: #333;
+            color: #ccc;
+        }
+
+        .card-block {
+            height: 70px;
+            padding: 10px;
+            color: #fff;
+        }
+
+        .card-primary {
+            background-color: #030E52;
+        }
+
+        .card-success {
+            background-color: #054003;
+        }
+
+        .card-danger {
+            background-color: #B81C04;
+        }
+        h1{
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        input{
+            width: 100%;
+            height: 70px;
+        }
+
+        #output1,
+        #output2,
+        #output3{
+            margin-bottom: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="display-4 center-text">
+                    Temperature Converter
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <input type="number" name="Farenheit" id="fChoice" placeholder="Enters temp in: Farenheit">
+                <div id='output1'>
+                    <div class='col-sm-12 card-block card-success'>
+                        <h5><span id="celOutput"></span> &deg;C</h5>
+                    </div>
+                    <div class='col-sm-12 card-block card-danger'>
+                            <h5><span id="kelOutput"></span> &deg;K</h5>
+                    </div>
+
+                </div>
+                
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <input type="number" name="Celcius" id="cChoice" placeholder='Enters temp in: Celcius'>
+                <div id='output2'>
+                        <div class='col-sm-12 card-block card-danger'>
+                            <h5><span id="kelOutput2"></span> &deg;K</h5>
+                        </div>
+                        <div class='col-sm-12 card-block card-primary'>
+                                <h5><span id="farOutput"></span> &deg;F</h5>
+                        </div>
+    
+                    </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <input type="number" name="Kelvin" id="kChoice" placeholder='Enters temp in: Kelvin'> 
+                <div id='output3'>
+                        <div class='col-sm-12 card-block card-primary'>
+                                <h5><span id="farOutput2"></span> &deg;F</h5>
+                        </div>
+                        <div class='col-sm-12 card-block card-success'>
+                            <h5><span id="celOutput2"></span> &deg;C</h5>
+                        </div>
+                    </div>   
+            </div>
+        </div>
+    </div>
+    <script>
+        //let's do Farenheit first
+        document.getElementById('output1').style.visibility = "hidden";
+        document.getElementById("fChoice").addEventListener('input', function(e){
+            var faren = e.target.value;
+            if(faren != ''){
+                document.getElementById('output1').style.visibility = "visible";
+            }    
+            document.getElementById("celOutput").innerHTML = ((faren - 32) / (9/5)).toFixed(2);
+            document.getElementById("kelOutput").innerHTML = (((faren - 32) / (9/5)) + 273.15).toFixed(2);
+
+        });
+
+        //Celcius is next
+        document.getElementById('output2').style.visibility = "hidden";
+        document.getElementById('cChoice').addEventListener("input", function(e){
+            var celci = e.target.value;
+            if(celci != ''){
+                document.getElementById('output2').style.visibility = "visible";
+            }
+            var kel = 273.15;
+            document.getElementById("farOutput").innerHTML = ((celci * (9/5)) + 32).toFixed(2);
+            document.getElementById("kelOutput2").innerHTML = +celci + +kel;
+        });
+
+        //finally Kelvin
+        document.getElementById('output3').style.visibility = "hidden";
+        document.getElementById("kChoice").addEventListener("input", function(e){
+            var kelv = e.target.value;
+            if(kelv != ''){
+                document.getElementById('output3').style.visibility = "visible";
+            }
+            document.getElementById("farOutput2").innerHTML = ((kelv - 273.15) * (9/5)).toFixed(2);
+            document.getElementById("celOutput2").innerHTML = (kelv - 273.15).toFixed(2);
+        })
+
+        //empty the temp fields when empty
+
+    </script>
+</body>
+</html>
